@@ -53,30 +53,35 @@ faqItems.forEach((item) => {
   });
 });
 
-function legacyCopy(text) {
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  textarea.style.cssText = "position:fixed;opacity:0;pointer-events:none;";
-  document.body.appendChild(textarea);
-  textarea.focus();
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
-}
-
 document.querySelectorAll(".btn-copy").forEach((btn) => {
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", async () => {
     const text = btn.dataset.copy;
+    let success = false;
 
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).catch(() => legacyCopy(text));
-    } else {
-      legacyCopy(text);
+    try {
+      await navigator.clipboard.writeText(text);
+      success = true;
+    } catch (err) {
+      try {
+        const el = document.createElement("textarea");
+        el.value = text;
+        el.style.position = "absolute";
+        el.style.left = "-9999px";
+        el.style.top = "-9999px";
+        document.body.appendChild(el);
+        el.focus();
+        el.select();
+        el.setSelectionRange(0, 99999);
+        success = document.execCommand("copy");
+        document.body.removeChild(el);
+      } catch (e) {
+        success = false;
+      }
     }
 
     const original = btn.textContent;
-    btn.textContent = "已复制 ✓";
-    btn.classList.add("copied");
+    btn.textContent = success ? "已复制 ✓" : "请手动复制: " + text;
+    btn.classList.toggle("copied", success);
     setTimeout(() => {
       btn.textContent = original;
       btn.classList.remove("copied");
