@@ -143,6 +143,38 @@ No build step needed. Deploy as-is:
 
 ---
 
+## Git Workflow
+
+### Branch Structure
+| Branch | Purpose |
+|---|---|
+| `main` | Production only — deploys to GitHub Pages |
+| `dev` | Development integration branch |
+| `feature/*` | New features, branched from `dev` |
+| `fix/*` | Bug fixes, branched from `dev` |
+
+### Rules
+1. Never work directly on `main`.
+2. Before making any change, always run `git status --short --branch` and `git branch`.
+3. If currently on `main`, switch to `dev` first.
+4. For each new feature or fix, create a branch from `dev`: e.g. `feature/contact-form`, `fix/mobile-nav`.
+5. Before committing, show the user `git status --short` and `git diff --stat` and wait for approval.
+6. Do not commit unrelated files.
+7. Do not push directly to `main` unless explicitly approved by the user.
+8. After finishing a feature, commit only the relevant files with a clear message, push the branch, then wait for approval before merging into `dev`.
+9. Before merging `dev` into `main`, confirm: working tree is clean, site looks correct, mobile layout checked, no broken links or assets.
+10. Production deployment comes from `main` only.
+
+### Repository
+- GitHub: https://github.com/terry-ou05/fit-coach-landing
+- Live site: https://terry-ou05.github.io/fit-coach-landing
+
+### Important
+- Never commit tokens, passwords, or secrets to any file.
+- `deploy.ps1` is in `.gitignore` and must never be committed.
+
+---
+
 ## What NOT to change
 
 - Do not introduce JS frameworks or bundlers — the whole point is zero-dependency simplicity.
