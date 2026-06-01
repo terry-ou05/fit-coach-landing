@@ -1,3 +1,5 @@
+const withBase = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
+
 export const brand = {
   name: '盛利',
   tagline: '广州线下私教 | 增肌 减脂 塑形',
@@ -209,11 +211,11 @@ export const formCopy = {
 }
 
 export const media = {
-  heroSrc: '/images/shengli/hero.webp',
+  heroSrc: withBase('images/shengli/hero.webp'),
   heroAlt: '广州线下健身教练盛利的训练展示区域',
-  trainingSrc: '/images/shengli/training-01.webp',
+  trainingSrc: withBase('images/shengli/training-01.webp'),
   trainingAlt: '盛利线下训练指导展示',
-  progressSrc: '/images/shengli/client-progress-01.webp',
+  progressSrc: withBase('images/shengli/client-progress-01.webp'),
   photoGuidance: '盛利本人训练照、教学照或线下训练环境照。',
   resultAlt: '盛利学员训练反馈展示区域',
 }
