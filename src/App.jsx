@@ -157,22 +157,22 @@ function App() {
 
             </div>
 
-            <div className="relative min-h-[300px] overflow-hidden rounded-lg border border-white/10 bg-zinc-900 md:min-h-[380px] lg:min-h-[480px]">
-              {media.heroSrc && (
-                <img
-                  className="absolute inset-0 h-full w-full object-contain opacity-80"
-                  src={media.heroSrc}
-                  alt={media.heroAlt}
-                />
-              )}
-              <div className="absolute inset-0 bg-[linear-gradient(140deg,rgba(255,255,255,0.08),transparent_42%),radial-gradient(circle_at_76%_28%,rgba(132,204,22,0.22),transparent_32%)]" />
-              <div className="absolute left-5 top-5 rounded-lg bg-white px-4 py-3 text-zinc-950 shadow-2xl md:left-8 md:top-8">
-                <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">{hero.mediaLabel}</p>
-                <p className="text-base font-semibold md:text-lg">{hero.mediaTitle}</p>
+            <div className="grid gap-3 lg:self-start">
+              <div className="relative min-h-[260px] overflow-hidden rounded-lg border border-white/10 bg-zinc-900 md:min-h-[340px] lg:min-h-[360px]">
+                {media.heroSrc && (
+                  <img
+                    className="absolute inset-0 h-full w-full object-contain"
+                    src={media.heroSrc}
+                    alt={media.heroAlt}
+                  />
+                )}
+                <div className="absolute inset-0 bg-[linear-gradient(140deg,rgba(255,255,255,0.04),transparent_46%),radial-gradient(circle_at_76%_28%,rgba(132,204,22,0.14),transparent_32%)]" />
               </div>
-              <div className="absolute bottom-5 left-5 right-5 rounded-lg border border-white/10 bg-zinc-950/84 p-5 backdrop-blur md:bottom-8 md:left-8 md:right-8">
-                <p className="text-sm leading-6 text-zinc-300">{hero.mediaBody}</p>
-                <div className="mt-5 grid grid-cols-2 gap-3">
+              <div className="rounded-lg border border-white/10 bg-zinc-950/84 p-5">
+                <p className="text-xs font-semibold uppercase tracking-wide text-lime-200">{hero.mediaLabel}</p>
+                <h2 className="mt-2 text-xl font-semibold text-white">{hero.mediaTitle}</h2>
+                <p className="mt-3 text-sm leading-6 text-zinc-300">{hero.mediaBody}</p>
+                <div className="mt-4 grid grid-cols-2 gap-3">
                   {hero.mediaStats.map((item) => (
                     <div key={item.label} className="rounded-lg bg-white/[0.06] p-3">
                       <strong className="block text-xl text-white">{item.value}</strong>
@@ -238,11 +238,13 @@ function App() {
                 ))}
               </div>
               {media.trainingSrc && (
-                <img
-                  className="mt-7 aspect-[4/3] w-full rounded-lg border border-zinc-200 object-contain"
-                  src={media.trainingSrc}
-                  alt={media.trainingAlt}
-                />
+                <div className="mt-7 rounded-lg border border-zinc-800 bg-zinc-950 p-2">
+                  <img
+                    className="aspect-square w-full rounded-md object-contain"
+                    src={media.trainingSrc}
+                    alt={media.trainingAlt}
+                  />
+                </div>
               )}
             </div>
             <div id="method" className="rounded-lg bg-zinc-950 p-6 text-white md:p-8">
@@ -262,9 +264,9 @@ function App() {
         <section id="services" className="bg-zinc-950 py-14 lg:py-18">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <SectionHeader eyebrow={sectionCopy.services.eyebrow} title={sectionCopy.services.title} dark />
-            <div className="mt-9 grid gap-5 lg:grid-cols-3">
+            <div className="mt-9 grid items-stretch gap-5 md:grid-cols-2">
               {services.map((service) => (
-                <article key={service.title} className="rounded-lg border border-white/10 bg-white/[0.04] p-6">
+                <article key={service.title} className="flex h-full flex-col rounded-lg border border-white/10 bg-white/[0.04] p-6">
                   <h3 className="text-2xl font-semibold text-white">{service.title}</h3>
                   <p className="mt-3 leading-7 text-zinc-300">{service.detail}</p>
                   <div className="mt-6 grid gap-3">
