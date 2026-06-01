@@ -155,17 +155,16 @@ function App() {
                 </a>
               </div>
 
-              <div className="mt-7 grid gap-3 sm:grid-cols-3">
-                {stats.map((item) => (
-                  <div key={item.label} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
-                    <strong className="block text-2xl text-white md:text-3xl">{item.value}</strong>
-                    <span className="mt-1 block text-sm text-zinc-400">{item.label}</span>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            <div className="relative min-h-[360px] overflow-hidden rounded-lg border border-white/10 bg-zinc-900 md:min-h-[480px]">
+            <div className="relative min-h-[300px] overflow-hidden rounded-lg border border-white/10 bg-zinc-900 md:min-h-[380px] lg:min-h-[480px]">
+              {media.heroSrc && (
+                <img
+                  className="absolute inset-0 h-full w-full object-contain opacity-80"
+                  src={media.heroSrc}
+                  alt={media.heroAlt}
+                />
+              )}
               <div className="absolute inset-0 bg-[linear-gradient(140deg,rgba(255,255,255,0.08),transparent_42%),radial-gradient(circle_at_76%_28%,rgba(132,204,22,0.22),transparent_32%)]" />
               <div className="absolute left-5 top-5 rounded-lg bg-white px-4 py-3 text-zinc-950 shadow-2xl md:left-8 md:top-8">
                 <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">{hero.mediaLabel}</p>
@@ -182,7 +181,15 @@ function App() {
                   ))}
                 </div>
               </div>
-              <p className="sr-only">{media.heroAlt}</p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3 lg:col-start-1 lg:row-start-2">
+              {stats.map((item) => (
+                <div key={item.label} className="rounded-lg border border-white/10 bg-white/[0.04] p-4">
+                  <strong className="block text-2xl text-white md:text-3xl">{item.value}</strong>
+                  <span className="mt-1 block text-sm text-zinc-400">{item.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -230,6 +237,13 @@ function App() {
                   </p>
                 ))}
               </div>
+              {media.trainingSrc && (
+                <img
+                  className="mt-7 aspect-[4/3] w-full rounded-lg border border-zinc-200 object-contain"
+                  src={media.trainingSrc}
+                  alt={media.trainingAlt}
+                />
+              )}
             </div>
             <div id="method" className="rounded-lg bg-zinc-950 p-6 text-white md:p-8">
               <SectionHeader eyebrow={philosophy.eyebrow} title={philosophy.title} dark />
@@ -304,7 +318,14 @@ function App() {
         <section id="results" className="bg-zinc-100 py-14 text-zinc-950 lg:py-18">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <SectionHeader eyebrow={sectionCopy.results.eyebrow} title={sectionCopy.results.title} />
-            <div className="mt-9 grid gap-5 lg:grid-cols-3">
+            {media.progressSrc && (
+              <img
+                className="mt-9 aspect-[3/2] w-full rounded-lg bg-white object-contain shadow-sm"
+                src={media.progressSrc}
+                alt={media.resultAlt}
+              />
+            )}
+            <div className="mt-5 grid gap-5 lg:grid-cols-3">
               {results.map((item) => (
                 <article key={item.name} className="rounded-lg bg-white p-6 shadow-sm">
                   <p className="text-sm font-semibold text-rose-600">{item.result}</p>
